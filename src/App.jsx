@@ -20,6 +20,8 @@ function Virtual({ children, childrenHeight }) {
   const [lastIndex, setLastIndex] = useState();
   const [perScreen, setPerScreen] = useState();
 
+  console.log(children);
+
   useEffect(() => {
     evaluate();
     window.addEventListener('scroll', evaluate);
@@ -43,7 +45,11 @@ function Virtual({ children, childrenHeight }) {
     console.log('childToShow on screen', childToShow);
   }
 
-  return <>{children.slice(lastIndex, lastIndex + perScreen)}</>;
+  return (
+    <div style={{ height: childrenHeight * children.length }}>
+      {children.slice(lastIndex, lastIndex + 1 + perScreen)}
+    </div>
+  );
 }
 
 export default App;
